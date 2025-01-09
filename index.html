@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Very Cute Kittens</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/inter/3.19.3/inter.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+        }
+        
+        h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #333;
+            text-align: center;
+            line-height: 1.2;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #333 0%, #666 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeIn 1s ease-in;
+            position: relative;
+            z-index: 1;
+        }
+
+        .floating-kitten {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background-image: url('/api/placeholder/200/200');  /* Replace with your hosted image path */
+            background-size: contain;
+            background-repeat: no-repeat;
+            animation: float 15s linear infinite;
+            z-index: 2;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+                left: 20%;
+                top: 20%;
+            }
+            25% {
+                transform: translate(-50%, -50%) rotate(90deg);
+                left: 80%;
+                top: 20%;
+            }
+            50% {
+                transform: translate(-50%, -50%) rotate(180deg);
+                left: 80%;
+                top: 80%;
+            }
+            75% {
+                transform: translate(-50%, -50%) rotate(270deg);
+                left: 20%;
+                top: 80%;
+            }
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+                left: 20%;
+                top: 20%;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            .floating-kitten {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-kitten"></div>
+    <h1>very cute kittens</h1>
+</body>
+</html>
