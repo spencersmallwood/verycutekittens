@@ -39,8 +39,6 @@
 
         .kitten {
             position: absolute;
-            width: 200px;
-            height: 200px;
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
@@ -48,20 +46,30 @@
         }
 
         #kitten1 {
+            width: 200px;
+            height: 200px;
             background-image: url('kitten.jpg');
-            animation: float1 10s infinite linear;
+            left: 10%;
+            top: 20%;
+            animation: bounce1 20s linear infinite;
         }
 
         #kitten2 {
-            background-image: url('kitten2.png');
-            animation: float2 12s infinite linear;
+            width: 200px;
+            height: 200px;
+            background-image: url('kitten2.jpg');
+            left: 60%;
+            top: 30%;
+            animation: bounce2 25s linear infinite;
         }
 
         #kitten3 {
-            background-image: url('kitten3.png');
             width: 300px;
             height: 300px;
-            animation: float3 15s infinite linear;
+            background-image: url('kitten3.jpg');
+            left: 40%;
+            top: 50%;
+            animation: bounce3 30s linear infinite;
         }
 
         .meow {
@@ -75,6 +83,26 @@
             z-index: 1000;
         }
 
+        @keyframes bounce1 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(calc(90vw - 200px), calc(40vh)) rotate(90deg); }
+            50% { transform: translate(calc(80vw - 200px), calc(80vh - 200px)) rotate(180deg); }
+            75% { transform: translate(calc(10vw), calc(70vh - 200px)) rotate(270deg); }
+        }
+
+        @keyframes bounce2 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(calc(70vw - 200px), calc(60vh - 200px)) rotate(120deg); }
+            66% { transform: translate(calc(20vw), calc(70vh - 200px)) rotate(240deg); }
+        }
+
+        @keyframes bounce3 {
+            0%, 100% { transform: translate(0, 0) rotate(-5deg); }
+            25% { transform: translate(calc(60vw - 300px), calc(20vh)) rotate(5deg); }
+            50% { transform: translate(calc(30vw - 300px), calc(60vh - 300px)) rotate(-5deg); }
+            75% { transform: translate(calc(10vw), calc(40vh - 300px)) rotate(5deg); }
+        }
+
         @keyframes floatUp {
             0% {
                 transform: translateY(0);
@@ -86,35 +114,14 @@
             }
         }
 
-        @keyframes float1 {
-            0% { transform: translate(0, 0); }
-            25% { transform: translate(50vw, 25vh); }
-            50% { transform: translate(75vw, 50vh); }
-            75% { transform: translate(25vw, 75vh); }
-            100% { transform: translate(0, 0); }
-        }
-
-        @keyframes float2 {
-            0% { transform: translate(75vw, 75vh); }
-            33% { transform: translate(25vw, 25vh); }
-            66% { transform: translate(50vw, 50vh); }
-            100% { transform: translate(75vw, 75vh); }
-        }
-
-        @keyframes float3 {
-            0% { transform: translate(50vw, 0); }
-            50% { transform: translate(0, 50vh); }
-            100% { transform: translate(50vw, 0); }
-        }
-
         @media (max-width: 768px) {
             .kitten {
-                width: 150px;
-                height: 150px;
+                width: 150px !important;
+                height: 150px !important;
             }
             #kitten3 {
-                width: 200px;
-                height: 200px;
+                width: 200px !important;
+                height: 200px !important;
             }
             h1 {
                 font-size: 2.5rem;
@@ -129,36 +136,21 @@
     <h1>very cute kittens</h1>
 
     <script>
-        // Add meow effect when clicking
         document.addEventListener('click', function(e) {
-            console.log('Click detected!'); // Debug log
-            
             const meow = document.createElement('div');
             meow.className = 'meow';
-            meow.style.left = e.pageX + 'px';
-            meow.style.top = e.pageY + 'px';
+            meow.style.left = (e.pageX - 40) + 'px';
+            meow.style.top = (e.pageY - 20) + 'px';
             
-            // Random meow text
             const meows = ['MEOW!', 'meow~', 'Meoooow!', 'MROW!', 'mew!'];
             meow.textContent = meows[Math.floor(Math.random() * meows.length)];
             
             document.body.appendChild(meow);
-            console.log('Meow added!'); // Debug log
             
-            // Remove the meow element after animation
             setTimeout(() => {
                 meow.remove();
             }, 2000);
         });
-
-        // Debug image loading
-        window.onload = function() {
-            const kittens = document.getElementsByClassName('kitten');
-            Array.from(kittens).forEach(kitten => {
-                console.log(`Kitten loaded: ${kitten.id}`);
-                console.log(`Background image: ${getComputedStyle(kitten).backgroundImage}`);
-            });
-        }
     </script>
 </body>
 </html>
