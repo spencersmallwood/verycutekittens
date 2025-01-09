@@ -17,6 +17,7 @@
             background-color: white;
             font-family: 'Inter', sans-serif;
             overflow: hidden;
+            cursor: pointer;
         }
         
         h1 {
@@ -33,104 +34,131 @@
             animation: fadeIn 1s ease-in;
             position: relative;
             z-index: 1;
+            user-select: none;
         }
 
-        .floating-kitten, .floating-kitten-2 {
+        .kitten {
             position: absolute;
             width: 200px;
             height: 200px;
             background-size: contain;
             background-repeat: no-repeat;
+            background-position: center;
             z-index: 2;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
         }
 
-        .floating-kitten {
-            background-image: url('./kitten.jpg');
-            animation: float 15s linear infinite;
+        #kitten1 {
+            background-image: url('kitten.jpg');
+            animation: float1 10s infinite linear;
         }
 
-        .floating-kitten-2 {
-            background-image: url('./kitten2.png');
-            animation: float2 18s linear infinite;
+        #kitten2 {
+            background-image: url('kitten2.jpg');
+            animation: float2 12s infinite linear;
         }
 
-        @keyframes float {
+        #kitten3 {
+            background-image: url('kitten3.jpg');
+            width: 300px;
+            height: 300px;
+            animation: float3 15s infinite linear;
+        }
+
+        .meow {
+            position: absolute;
+            color: #ff69b4;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            pointer-events: none;
+            animation: floatUp 2s forwards;
+            z-index: 1000;
+        }
+
+        @keyframes floatUp {
             0% {
-                transform: translate(-50%, -50%) rotate(0deg);
-                left: 20%;
-                top: 20%;
-            }
-            25% {
-                transform: translate(-50%, -50%) rotate(90deg);
-                left: 80%;
-                top: 20%;
-            }
-            50% {
-                transform: translate(-50%, -50%) rotate(180deg);
-                left: 80%;
-                top: 80%;
-            }
-            75% {
-                transform: translate(-50%, -50%) rotate(270deg);
-                left: 20%;
-                top: 80%;
+                transform: translateY(0);
+                opacity: 1;
             }
             100% {
-                transform: translate(-50%, -50%) rotate(360deg);
-                left: 20%;
-                top: 20%;
+                transform: translateY(-100px);
+                opacity: 0;
             }
+        }
+
+        @keyframes float1 {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(50vw, 25vh); }
+            50% { transform: translate(75vw, 50vh); }
+            75% { transform: translate(25vw, 75vh); }
+            100% { transform: translate(0, 0); }
         }
 
         @keyframes float2 {
-            0% {
-                transform: translate(-50%, -50%) rotate(0deg);
-                left: 80%;
-                top: 80%;
-            }
-            33% {
-                transform: translate(-50%, -50%) rotate(120deg);
-                left: 20%;
-                top: 50%;
-            }
-            66% {
-                transform: translate(-50%, -50%) rotate(240deg);
-                left: 50%;
-                top: 20%;
-            }
-            100% {
-                transform: translate(-50%, -50%) rotate(360deg);
-                left: 80%;
-                top: 80%;
-            }
+            0% { transform: translate(75vw, 75vh); }
+            33% { transform: translate(25vw, 25vh); }
+            66% { transform: translate(50vw, 50vh); }
+            100% { transform: translate(75vw, 75vh); }
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        @keyframes float3 {
+            0% { transform: translate(50vw, 0); }
+            50% { transform: translate(0, 50vh); }
+            100% { transform: translate(50vw, 0); }
         }
 
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-            .floating-kitten, .floating-kitten-2 {
+            .kitten {
                 width: 150px;
                 height: 150px;
+            }
+            #kitten3 {
+                width: 200px;
+                height: 200px;
+            }
+            h1 {
+                font-size: 2.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="floating-kitten"></div>
-    <div class="floating-kitten-2"></div>
+    <div id="kitten1" class="kitten"></div>
+    <div id="kitten2" class="kitten"></div>
+    <div id="kitten3" class="kitten"></div>
     <h1>very cute kittens</h1>
+
+    <script>
+        // Add meow effect when clicking
+        document.addEventListener('click', function(e) {
+            console.log('Click detected!'); // Debug log
+            
+            const meow = document.createElement('div');
+            meow.className = 'meow';
+            meow.style.left = e.pageX + 'px';
+            meow.style.top = e.pageY + 'px';
+            
+            // Random meow text
+            const meows = ['MEOW!', 'meow~', 'Meoooow!', 'MROW!', 'mew!'];
+            meow.textContent = meows[Math.floor(Math.random() * meows.length)];
+            
+            document.body.appendChild(meow);
+            console.log('Meow added!'); // Debug log
+            
+            // Remove the meow element after animation
+            setTimeout(() => {
+                meow.remove();
+            }, 2000);
+        });
+
+        // Debug image loading
+        window.onload = function() {
+            const kittens = document.getElementsByClassName('kitten');
+            Array.from(kittens).forEach(kitten => {
+                console.log(`Kitten loaded: ${kitten.id}`);
+                console.log(`Background image: ${getComputedStyle(kitten).backgroundImage}`);
+            });
+        }
+    </script>
 </body>
 </html>
