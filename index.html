@@ -241,11 +241,34 @@
         setInterval(createBackgroundText, 150);
 
         // Handle clicks for meows
-                    document.addEventListener('click', function(e) {
+                    let isMouseDown = false;
+        let mouseSpamInterval;
+
+        document.addEventListener('mousedown', function() {
+            isMouseDown = true;
+            mouseSpamInterval = setInterval(createMeow, 100);
+        });
+
+        document.addEventListener('mouseup', function() {
+            isMouseDown = false;
+            clearInterval(mouseSpamInterval);
+        });
+
+        document.addEventListener('mouseleave', function() {
+            isMouseDown = false;
+            clearInterval(mouseSpamInterval);
+        });
+
+        function createMeow(e) {
             const meow = document.createElement('div');
             meow.className = 'meow';
-            meow.style.left = (e.pageX - 40) + 'px';
-            meow.style.top = (e.pageY - 20) + 'px';
+            
+            // Use event coords if available (click), otherwise use last known mouse position
+            const x = e ? e.pageX : lastMouseX;
+            const y = e ? e.pageY : lastMouseY;
+            
+            meow.style.left = (x - 40) + 'px';
+            meow.style.top = (y - 20) + 'px';
             
             // Random color for meow text
             const colors = ['#ff6b6b', '#4169e1', '#32cd32', '#ffd700', '#ff69b4'];
@@ -256,9 +279,19 @@
             meow.textContent = meows[Math.floor(Math.random() * meows.length)];
             
             document.body.appendChild(meow);
-            
             setTimeout(() => meow.remove(), 2000);
+        }
+
+        // Track mouse position
+        let lastMouseX = 0;
+        let lastMouseY = 0;
+        document.addEventListener('mousemove', function(e) {
+            lastMouseX = e.pageX;
+            lastMouseY = e.pageY;
         });
+
+        // Normal click handler
+        document.addEventListener('click', createMeow);
     </script>
 </body>
 </html>
