@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Very Cute Kittens</title>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/inter/3.19.3/inter.css" rel="stylesheet">
     <style>
         body {
@@ -34,16 +35,24 @@
             z-index: 1;
         }
 
-        .floating-kitten {
+        .floating-kitten, .floating-kitten-2 {
             position: absolute;
             width: 200px;
             height: 200px;
-            background-image: url('./kitten.jpg');
             background-size: contain;
             background-repeat: no-repeat;
-            animation: float 15s linear infinite;
             z-index: 2;
             filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+        }
+
+        .floating-kitten {
+            background-image: url('./kitten.jpg');
+            animation: float 15s linear infinite;
+        }
+
+        .floating-kitten-2 {
+            background-image: url('./kitten2.jpeg');
+            animation: float2 18s linear infinite;
         }
 
         @keyframes float {
@@ -74,6 +83,29 @@
             }
         }
 
+        @keyframes float2 {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+                left: 80%;
+                top: 80%;
+            }
+            33% {
+                transform: translate(-50%, -50%) rotate(120deg);
+                left: 20%;
+                top: 50%;
+            }
+            66% {
+                transform: translate(-50%, -50%) rotate(240deg);
+                left: 50%;
+                top: 20%;
+            }
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+                left: 80%;
+                top: 80%;
+            }
+        }
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -89,7 +121,7 @@
             h1 {
                 font-size: 2.5rem;
             }
-            .floating-kitten {
+            .floating-kitten, .floating-kitten-2 {
                 width: 150px;
                 height: 150px;
             }
@@ -98,6 +130,7 @@
 </head>
 <body>
     <div class="floating-kitten"></div>
+    <div class="floating-kitten-2"></div>
     <h1>very cute kittens</h1>
 </body>
 </html>
