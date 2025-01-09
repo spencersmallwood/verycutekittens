@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>$KITTENS - The Cutest Coin</title>
+    <title>$KITTENS to the moon!</title>
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/inter/3.19.3/inter.css" rel="stylesheet">
     <style>
@@ -14,92 +14,63 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: white;
+            background-color: white;
             font-family: 'Inter', sans-serif;
             overflow: hidden;
             cursor: pointer;
-            position: relative;
         }
         
-        .background-text {
-            position: fixed;
-            font-size: 32px;
-            color: rgba(100, 100, 100, 0.2);
-            font-weight: bold;
-            pointer-events: none;
-            white-space: nowrap;
-            animation: floatUpBackground 15s linear infinite;
-            z-index: 0;
-        }
-
-        @keyframes floatUpBackground {
-            from {
-                transform: translateY(110vh);
-            }
-            to {
-                transform: translateY(-10vh);
-            }
-        }
-
         h1 {
             font-size: 4.5rem;
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
-            padding: 20px 40px;
             font-weight: 900;
             text-align: center;
             line-height: 1.2;
             margin: 0;
             padding: 20px;
             position: relative;
-            z-index: 1;
+            z-index: 3;
             user-select: none;
-            animation: titleAnimation 12s linear infinite;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
-            letter-spacing: -1px;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+            animation: titlePulse 4s ease-in-out infinite;
         }
 
-        .rocket {
-            display: inline-block;
-            animation: rocketShake 0.5s infinite;
+        @keyframes titlePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
 
-        @keyframes rocketShake {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(2px, -2px) rotate(5deg); }
-            75% { transform: translate(-2px, 2px) rotate(-5deg); }
+        .background-text {
+            position: fixed;
+            font-size: 32px;
+            color: rgba(100, 100, 100, 0.15);
+            pointer-events: none;
+            white-space: nowrap;
+            z-index: 1;
+            width: 100%;
+            text-align: center;
+            font-weight: bold;
+            left: 0;
+            animation: floatUpBackground 20s linear infinite;
+            opacity: 0;
         }
 
-        @keyframes titleAnimation {
-            0% {
-                color: #ff69b4;
-                transform: scale(1) rotate(-2deg);
-                text-shadow: 0 0 10px rgba(255,105,180,0.5);
+        @keyframes floatUpBackground {
+            0% { 
+                transform: translateY(120vh);
+                opacity: 0;
             }
-            20% {
-                color: #00ff00;
-                transform: scale(1.15) rotate(2deg);
-                text-shadow: 0 0 15px rgba(0,255,0,0.5);
+            10% {
+                opacity: 1;
             }
-            40% {
-                color: #ff6b6b;
-                transform: scale(1) rotate(-2deg);
-                text-shadow: 0 0 10px rgba(255,107,107,0.5);
+            90% {
+                opacity: 1;
             }
-            60% {
-                color: #4169e1;
-                transform: scale(1.15) rotate(2deg);
-                text-shadow: 0 0 15px rgba(65,105,225,0.5);
-            }
-            80% {
-                color: #ffd700;
-                transform: scale(1) rotate(-2deg);
-                text-shadow: 0 0 10px rgba(255,215,0,0.5);
-            }
-            100% {
-                color: #ff69b4;
-                transform: scale(1) rotate(-2deg);
-                text-shadow: 0 0 10px rgba(255,105,180,0.5);
+            100% { 
+                transform: translateY(-20vh);
+                opacity: 0;
             }
         }
 
@@ -109,14 +80,13 @@
             background-repeat: no-repeat;
             background-position: center;
             z-index: 2;
-            transition: transform 0.3s ease, filter 0.3s ease;
-            cursor: pointer;
+            transition: transform 0.3s ease;
             filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
         }
 
         .kitten:hover {
-            filter: brightness(1.2) drop-shadow(0 6px 12px rgba(0,0,0,0.3));
-            transform: scale(1.15) rotate(5deg) !important;
+            transform: scale(1.1) !important;
+            filter: drop-shadow(0 6px 12px rgba(0,0,0,0.3));
         }
 
         #kitten1 {
@@ -124,6 +94,8 @@
             height: 180px;
             background-image: url('kitten.jpg');
             animation: bounce1 16s linear infinite;
+            top: 10%;
+            left: 10%;
         }
 
         #kitten2 {
@@ -131,6 +103,8 @@
             height: 160px;
             background-image: url('kitten2.png');
             animation: bounce2 19s linear infinite;
+            top: 20%;
+            right: 15%;
         }
 
         #kitten3 {
@@ -138,6 +112,8 @@
             height: 240px;
             background-image: url('kitten3.png');
             animation: bounce3 22s linear infinite;
+            bottom: 20%;
+            left: 20%;
         }
 
         #kitten4 {
@@ -145,6 +121,8 @@
             height: 200px;
             background-image: url('kitten4.png');
             animation: bounce4 18s linear infinite;
+            bottom: 15%;
+            right: 25%;
         }
 
         #kitten5 {
@@ -152,85 +130,89 @@
             height: 220px;
             background-image: url('kitten5.png');
             animation: bounce5 20s linear infinite;
-        }
-
-        .meow {
-            position: absolute;
-            font-weight: bold;
-            pointer-events: none;
-            animation: floatUp 2s forwards ease-out;
-            z-index: 1000;
-            opacity: 0;
-            font-size: 2rem;
-            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+            top: 40%;
+            right: 40%;
         }
 
         @keyframes bounce1 {
-            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
-            25% { transform: translate(calc(85vw - 180px), 15vh) rotate(90deg) scale(1.1); }
-            50% { transform: translate(calc(75vw - 180px), calc(85vh - 180px)) rotate(180deg) scale(0.9); }
-            75% { transform: translate(5vw, calc(75vh - 180px)) rotate(270deg) scale(1.1); }
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(30vw, 20vh) rotate(10deg); }
+            50% { transform: translate(50vw, -10vh) rotate(-10deg); }
+            75% { transform: translate(20vw, 30vh) rotate(5deg); }
         }
 
         @keyframes bounce2 {
-            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(0.9); }
-            33% { transform: translate(calc(80vw - 160px), calc(80vh - 160px)) rotate(120deg) scale(1.1); }
-            66% { transform: translate(calc(10vw), calc(90vh - 160px)) rotate(240deg) scale(0.9); }
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(-40vw, 30vh) rotate(-15deg); }
+            66% { transform: translate(-20vw, -20vh) rotate(15deg); }
         }
 
         @keyframes bounce3 {
-            0%, 100% { transform: translate(0, 0) rotate(-5deg) scale(1); }
-            25% { transform: translate(calc(90vw - 240px), 10vh) rotate(5deg) scale(1.1); }
-            50% { transform: translate(calc(85vw - 240px), calc(85vh - 240px)) rotate(-5deg) scale(0.95); }
-            75% { transform: translate(5vw, calc(90vh - 240px)) rotate(5deg) scale(1.05); }
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(40vw, -30vh) rotate(5deg); }
+            50% { transform: translate(60vw, 20vh) rotate(-5deg); }
+            75% { transform: translate(30vw, -40vh) rotate(5deg); }
         }
 
         @keyframes bounce4 {
-            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
-            20% { transform: translate(85vw, 15vh) rotate(72deg) scale(1.1); }
-            40% { transform: translate(calc(80vw - 200px), calc(85vh - 200px)) rotate(144deg) scale(0.9); }
-            60% { transform: translate(calc(90vw - 200px), 10vh) rotate(216deg) scale(1.1); }
-            80% { transform: translate(5vw, calc(90vh - 200px)) rotate(288deg) scale(0.9); }
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            20% { transform: translate(-30vw, -20vh) rotate(10deg); }
+            40% { transform: translate(-50vw, 30vh) rotate(-10deg); }
+            60% { transform: translate(-20vw, -40vh) rotate(15deg); }
+            80% { transform: translate(-40vw, 20vh) rotate(-5deg); }
         }
 
         @keyframes bounce5 {
-            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1.1); }
-            25% { transform: translate(calc(90vw - 220px), calc(10vh)) rotate(90deg) scale(0.9); }
-            50% { transform: translate(calc(85vw - 220px), calc(85vh - 220px)) rotate(180deg) scale(1.1); }
-            75% { transform: translate(calc(5vw), calc(90vh - 220px)) rotate(270deg) scale(0.9); }
-        }
-
-        @keyframes floatUp {
-            0% {
-                transform: translateY(0) scale(0.5) rotate(-10deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-120px) scale(1.3) rotate(10deg);
-                opacity: 0;
-            }
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(30vw, 40vh) rotate(-10deg); }
+            50% { transform: translate(-40vw, 20vh) rotate(10deg); }
+            75% { transform: translate(20vw, -30vh) rotate(-5deg); }
         }
 
         .moon {
             position: fixed;
             top: 20px;
             right: 20px;
-            font-size: 3rem;
-            animation: moonPulse 4s infinite;
+            font-size: 4rem;
+            animation: moonPulse 4s ease-in-out infinite;
             z-index: 3;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
         }
 
         @keyframes moonPulse {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
+            50% { transform: scale(1.1); }
+        }
+
+        .meow {
+            position: absolute;
+            color: #FFD700;
+            font-size: 2rem;
+            font-weight: bold;
+            pointer-events: none;
+            animation: floatUp 2s forwards ease-out;
+            z-index: 4;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            opacity: 0;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(0.5);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(1.2);
+                opacity: 0;
+            }
         }
 
         @media (max-width: 768px) {
             h1 {
-                font-size: 2.8rem;
+                font-size: 2.5rem;
             }
             .kitten {
                 width: 120px !important;
@@ -248,71 +230,27 @@
 </head>
 <body>
     <div class="moon">🌕</div>
-    <div class="text-container">
-        <div class="background-text">
-            <span>$KITTENS</span>
-            <span>$KITTENS</span>
-            <span>$KITTENS</span>
-            <span>$KITTENS</span>
-            <span>$KITTENS</span>
-        </div>
-    </div>
+    <div class="text-background"></div>
     <div id="kitten1" class="kitten"></div>
     <div id="kitten2" class="kitten"></div>
     <div id="kitten3" class="kitten"></div>
     <div id="kitten4" class="kitten"></div>
     <div id="kitten5" class="kitten"></div>
-    <h1 id="mainTitle">very cute kittens</h1>
+    <h1 id="mainTitle">$KITTENS to the moon!</h1>
 
     <script>
-        // Create background text rows
+        // Create background text
         function createBackgroundText() {
-            const container = document.querySelector('.text-container');
-            for (let i = 0; i < 8; i++) {
-                const row = document.createElement('div');
-                row.className = 'background-text';
-                row.style.animationDelay = `${i * 2}s`;
-                for (let j = 0; j < 5; j++) {
-                    const span = document.createElement('span');
-                    span.textContent = '$KITTENS';
-                    row.appendChild(span);
-                }
-                container.appendChild(row);
-            }
+            setInterval(() => {
+                const text = document.createElement('div');
+                text.className = 'background-text';
+                text.innerHTML = Array(5).fill('$KITTENS').join(' ');
+                document.body.appendChild(text);
+
+                setTimeout(() => text.remove(), 20000);
+            }, 3000);
         }
         createBackgroundText();
-
-    
-        const titleVariations = [
-            'very cute $KITTENS 🚀',
-            'very cute kittens 😺',
-            '$KITTENS to the moon! 🌕',
-            'much cute, very $KITTENS',
-            'very cute kittens ✨',
-            '$KITTENS = MOON SOON 🚀',
-            'very cute kittens 💎🐾'
-        ];
-
-        // Function to get random color
-        function getRandomColor() {
-            const colors = ['#ff1493', '#00ff00', '#ff4500', '#4169e1', '#ffd700', '#ff69b4', '#32cd32'];
-            return colors[Math.floor(Math.random() * colors.length)];
-        }
-
-        // Update title with random variations
-        function updateTitle() {
-            const titleElement = document.getElementById('mainTitle');
-            
-            // 47% chance for $KITTENS variations
-            if (Math.random() < 0.47) {
-                titleElement.textContent = titleVariations[Math.floor(Math.random() * titleVariations.length)];
-            } else {
-                titleElement.textContent = 'very cute kittens ✨';
-            }
-        }
-
-        // Update title every 2.5 seconds
-        setInterval(updateTitle, 2500);
 
         // Handle clicks for meows
         document.addEventListener('click', function(e) {
@@ -320,46 +258,14 @@
             meow.className = 'meow';
             meow.style.left = (e.pageX - 40) + 'px';
             meow.style.top = (e.pageY - 20) + 'px';
-            meow.style.color = getRandomColor();
             
-            const meows = [
-                'MEOW! 🚀', 'meow~ 💎', 'Meoooow! ✨', 
-                'MROW! 🌕', 'mew! 💫', 'purrrr~ 🐱',
-                '♥ $KITTENS ♥', 'nya~! 🚀', 'mrrp! ✨',
-                'TO THE MOON! 🌕', 'HODL! 😺', 'PAMP IT! 📈'
-            ];
+            const meows = ['MEOW! 🚀', 'meow~ 💎', 'Meoooow! ✨', 'MROW! 🌕', 
+                          'mew! 💫', 'purrrr~ 🐱', '$KITTENS! 💎', 'nya~! 🚀'];
             meow.textContent = meows[Math.floor(Math.random() * meows.length)];
             
             document.body.appendChild(meow);
             
-            setTimeout(() => {
-                meow.remove();
-            }, 2000);
-        });
-
-        // Special meows for kitten clicks
-        document.querySelectorAll('.kitten').forEach(kitten => {
-            kitten.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const bounds = kitten.getBoundingClientRect();
-                const meow = document.createElement('div');
-                meow.className = 'meow';
-                meow.style.left = (bounds.left + bounds.width/2) + 'px';
-                meow.style.top = (bounds.top + bounds.height/2) + 'px';
-                meow.style.color = getRandomColor();
-                
-                const specialMeows = [
-                    '$KITTENS 🚀', 'MOON SOON 🌕', 'MEOW MEOW 💎',
-                    'PUMP IT! 📈', 'TO THE MOON! ✨', 'HODL TIGHT! 💫'
-                ];
-                meow.textContent = specialMeows[Math.floor(Math.random() * specialMeows.length)];
-                
-                document.body.appendChild(meow);
-                
-                setTimeout(() => {
-                    meow.remove();
-                }, 2000);
-            });
+            setTimeout(() => meow.remove(), 2000);
         });
     </script>
 </body>
