@@ -43,33 +43,46 @@
             background-repeat: no-repeat;
             background-position: center;
             z-index: 2;
+            transition: transform 0.3s ease;
+        }
+
+        .kitten:hover {
+            transform: scale(1.1) !important;
         }
 
         #kitten1 {
             width: 200px;
             height: 200px;
             background-image: url('kitten.jpg');
-            left: 10%;
-            top: 20%;
-            animation: bounce1 20s linear infinite;
+            animation: bounce1 23s linear infinite;
         }
 
         #kitten2 {
             width: 200px;
             height: 200px;
             background-image: url('kitten2.png');
-            left: 60%;
-            top: 30%;
-            animation: bounce2 25s linear infinite;
+            animation: bounce2 27s linear infinite;
         }
 
         #kitten3 {
             width: 300px;
             height: 300px;
             background-image: url('kitten3.png');
-            left: 40%;
-            top: 50%;
-            animation: bounce3 30s linear infinite;
+            animation: bounce3 31s linear infinite;
+        }
+
+        #kitten4 {
+            width: 250px;
+            height: 250px;
+            background-image: url('kitten4.png');
+            animation: bounce4 29s linear infinite;
+        }
+
+        #kitten5 {
+            width: 250px;
+            height: 250px;
+            background-image: url('kitten5.png');
+            animation: bounce5 25s linear infinite;
         }
 
         .meow {
@@ -84,23 +97,44 @@
         }
 
         @keyframes bounce1 {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(calc(90vw - 200px), calc(40vh)) rotate(90deg); }
-            50% { transform: translate(calc(80vw - 200px), calc(80vh - 200px)) rotate(180deg); }
-            75% { transform: translate(calc(10vw), calc(70vh - 200px)) rotate(270deg); }
+            0% { transform: translate(0, 0) rotate(0deg); }
+            20% { transform: translate(calc(85vw - 200px), calc(20vh)) rotate(72deg); }
+            40% { transform: translate(calc(70vw - 200px), calc(70vh - 200px)) rotate(144deg); }
+            60% { transform: translate(calc(30vw), calc(80vh - 200px)) rotate(216deg); }
+            80% { transform: translate(calc(10vw), calc(40vh - 200px)) rotate(288deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
         }
 
         @keyframes bounce2 {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            33% { transform: translate(calc(70vw - 200px), calc(60vh - 200px)) rotate(120deg); }
-            66% { transform: translate(calc(20vw), calc(70vh - 200px)) rotate(240deg); }
+            0% { transform: translate(calc(80vw - 200px), 0) rotate(0deg); }
+            25% { transform: translate(calc(60vw - 200px), calc(70vh - 200px)) rotate(90deg); }
+            50% { transform: translate(calc(20vw), calc(50vh - 200px)) rotate(180deg); }
+            75% { transform: translate(calc(40vw - 200px), calc(20vh)) rotate(270deg); }
+            100% { transform: translate(calc(80vw - 200px), 0) rotate(360deg); }
         }
 
         @keyframes bounce3 {
-            0%, 100% { transform: translate(0, 0) rotate(-5deg); }
-            25% { transform: translate(calc(60vw - 300px), calc(20vh)) rotate(5deg); }
-            50% { transform: translate(calc(30vw - 300px), calc(60vh - 300px)) rotate(-5deg); }
-            75% { transform: translate(calc(10vw), calc(40vh - 300px)) rotate(5deg); }
+            0% { transform: translate(calc(40vw - 300px), calc(20vh)) rotate(-5deg); }
+            33% { transform: translate(calc(70vw - 300px), calc(60vh - 300px)) rotate(5deg); }
+            66% { transform: translate(calc(20vw), calc(40vh - 300px)) rotate(-5deg); }
+            100% { transform: translate(calc(40vw - 300px), calc(20vh)) rotate(5deg); }
+        }
+
+        @keyframes bounce4 {
+            0% { transform: translate(calc(20vw), 0) rotate(0deg) scale(1); }
+            20% { transform: translate(calc(60vw - 250px), calc(30vh)) rotate(72deg) scale(0.9); }
+            40% { transform: translate(calc(80vw - 250px), calc(60vh - 250px)) rotate(144deg) scale(1); }
+            60% { transform: translate(calc(50vw - 250px), calc(70vh - 250px)) rotate(216deg) scale(0.9); }
+            80% { transform: translate(calc(30vw), calc(40vh)) rotate(288deg) scale(1); }
+            100% { transform: translate(calc(20vw), 0) rotate(360deg) scale(1); }
+        }
+
+        @keyframes bounce5 {
+            0% { transform: translate(calc(70vw - 250px), calc(40vh)) rotate(0deg) scale(1); }
+            25% { transform: translate(calc(30vw), calc(20vh)) rotate(90deg) scale(0.95); }
+            50% { transform: translate(calc(10vw), calc(60vh - 250px)) rotate(180deg) scale(1); }
+            75% { transform: translate(calc(50vw - 250px), calc(70vh - 250px)) rotate(270deg) scale(0.95); }
+            100% { transform: translate(calc(70vw - 250px), calc(40vh)) rotate(360deg) scale(1); }
         }
 
         @keyframes floatUp {
@@ -133,6 +167,8 @@
     <div id="kitten1" class="kitten"></div>
     <div id="kitten2" class="kitten"></div>
     <div id="kitten3" class="kitten"></div>
+    <div id="kitten4" class="kitten"></div>
+    <div id="kitten5" class="kitten"></div>
     <h1>very cute kittens</h1>
 
     <script>
@@ -142,7 +178,7 @@
             meow.style.left = (e.pageX - 40) + 'px';
             meow.style.top = (e.pageY - 20) + 'px';
             
-            const meows = ['MEOW!', 'meow~', 'Meoooow!', 'MROW!', 'mew!'];
+            const meows = ['MEOW!', 'meow~', 'Meoooow!', 'MROW!', 'mew!', 'purrrr~', '♥ meow ♥'];
             meow.textContent = meows[Math.floor(Math.random() * meows.length)];
             
             document.body.appendChild(meow);
