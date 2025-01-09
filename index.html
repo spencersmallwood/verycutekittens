@@ -45,33 +45,48 @@
         .background-text {
             position: fixed;
             font-size: 32px;
-            color: rgba(100, 100, 100, 0.15);
+            color: rgba(100, 100, 100, 0.1);
             pointer-events: none;
             white-space: nowrap;
             z-index: 1;
             width: 100%;
             text-align: center;
             font-weight: bold;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
             left: 0;
             animation: floatUpBackground 20s linear infinite;
-            opacity: 0;
         }
 
         @keyframes floatUpBackground {
-            0% { 
-                transform: translateY(120vh);
+            0% {
+                transform: translateY(110vh);
                 opacity: 0;
             }
-            10% {
+            5% {
                 opacity: 1;
             }
-            90% {
+            95% {
                 opacity: 1;
             }
-            100% { 
-                transform: translateY(-20vh);
+            100% {
+                transform: translateY(-10vh);
                 opacity: 0;
             }
+        }
+
+        .text-container {
+            position: fixed;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            z-index: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+            pointer-events: none;
         }
 
         .kitten {
@@ -259,8 +274,8 @@
             meow.style.left = (e.pageX - 40) + 'px';
             meow.style.top = (e.pageY - 20) + 'px';
             
-            const meows = ['MEOW! 🚀', 'meow~ 💎', 'Meoooow! ✨', 'MROW! 🌕', 
-                          'mew! 💫', 'purrrr~ 🐱', '$KITTENS! 💎', 'nya~! 🚀'];
+            const meows = ['MEOW! 🚀', 'meow~ 💎', 'Meoooow! ✨', '$KITTENS 🌕', 
+                          'mew! 💫', 'purrrr~ 🐱', '$KITTENS! 💎', '$KITTENS 🚀'];
             meow.textContent = meows[Math.floor(Math.random() * meows.length)];
             
             document.body.appendChild(meow);
