@@ -23,8 +23,9 @@
         
         .background-text {
             position: fixed;
-            font-size: 24px;
-            color: rgba(100, 100, 100, 0.1);
+            font-size: 32px;
+            color: rgba(100, 100, 100, 0.2);
+            font-weight: bold;
             pointer-events: none;
             white-space: nowrap;
             animation: floatUpBackground 15s linear infinite;
@@ -257,7 +258,7 @@
     <script>
         // Create background text
         function createBackgroundText() {
-            for (let i = 0; i < 30; i++) {
+            for (let i = 0; i < 50; i++) {
                 const text = document.createElement('div');
                 text.className = 'background-text';
                 text.style.left = `${Math.random() * 100}vw`;
