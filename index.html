@@ -30,59 +30,43 @@
             position: relative;
             z-index: 3;
             user-select: none;
-            background: linear-gradient(45deg, #FFD700, #FFA500);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
-            animation: titlePulse 4s ease-in-out infinite;
+            animation: titleColor 8s linear infinite;
         }
 
-        @keyframes titlePulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+        @keyframes titleColor {
+            0% { color: #ff6b6b; }
+            20% { color: #4169e1; }
+            40% { color: #32cd32; }
+            60% { color: #ffd700; }
+            80% { color: #ff69b4; }
+            100% { color: #ff6b6b; }
         }
 
         .background-text {
             position: fixed;
-            font-size: 32px;
-            color: rgba(100, 100, 100, 0.1);
+            font-size: 24px;
+            color: rgba(100, 100, 100, 0.15);
             pointer-events: none;
             white-space: nowrap;
             z-index: 1;
-            font-weight: bold;
-            animation: fadeInOut 4s ease-in-out forwards;
+            animation: fadeInOut 3s ease-in-out forwards;
         }
 
         @keyframes fadeInOut {
             0% {
                 opacity: 0;
-                transform: translateY(-20px);
+                transform: translateY(20px);
             }
             20% {
                 opacity: 1;
-                transform: translateY(0);
             }
             80% {
                 opacity: 1;
-                transform: translateY(0);
             }
             100% {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(-20px);
             }
-        }
-
-        .text-container {
-            position: fixed;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-            z-index: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 4rem;
-            pointer-events: none;
         }
 
         .kitten {
@@ -92,12 +76,10 @@
             background-position: center;
             z-index: 2;
             transition: transform 0.3s ease;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
         }
 
         .kitten:hover {
             transform: scale(1.1) !important;
-            filter: drop-shadow(0 6px 12px rgba(0,0,0,0.3));
         }
 
         #kitten1 {
@@ -105,8 +87,6 @@
             height: 180px;
             background-image: url('kitten.jpg');
             animation: bounce1 16s linear infinite;
-            top: 10%;
-            left: 10%;
         }
 
         #kitten2 {
@@ -114,8 +94,6 @@
             height: 160px;
             background-image: url('kitten2.png');
             animation: bounce2 19s linear infinite;
-            top: 20%;
-            right: 15%;
         }
 
         #kitten3 {
@@ -123,8 +101,6 @@
             height: 240px;
             background-image: url('kitten3.png');
             animation: bounce3 22s linear infinite;
-            bottom: 20%;
-            left: 20%;
         }
 
         #kitten4 {
@@ -132,8 +108,6 @@
             height: 200px;
             background-image: url('kitten4.png');
             animation: bounce4 18s linear infinite;
-            bottom: 15%;
-            right: 25%;
         }
 
         #kitten5 {
@@ -141,13 +115,11 @@
             height: 220px;
             background-image: url('kitten5.png');
             animation: bounce5 20s linear infinite;
-            top: 40%;
-            right: 40%;
         }
 
         @keyframes bounce1 {
             0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(30vw, 20vh) rotate(10deg); }
+            25% { transform: translate(70vw, 20vh) rotate(10deg); }
             50% { transform: translate(50vw, -10vh) rotate(-10deg); }
             75% { transform: translate(20vw, 30vh) rotate(5deg); }
         }
@@ -184,10 +156,9 @@
             position: fixed;
             top: 20px;
             right: 20px;
-            font-size: 4rem;
-            animation: moonPulse 4s ease-in-out infinite;
+            font-size: 3rem;
+            animation: moonPulse 4s infinite;
             z-index: 3;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
         }
 
         @keyframes moonPulse {
@@ -233,15 +204,11 @@
                 width: 160px !important;
                 height: 160px !important;
             }
-            .moon {
-                font-size: 2rem;
-            }
         }
     </style>
 </head>
 <body>
     <div class="moon">🌕</div>
-    <div class="text-background"></div>
     <div id="kitten1" class="kitten"></div>
     <div id="kitten2" class="kitten"></div>
     <div id="kitten3" class="kitten"></div>
@@ -250,25 +217,39 @@
     <h1 id="mainTitle">$KITTENS to the moon!</h1>
 
     <script>
-        // Create background text
         function createBackgroundText() {
-            setInterval(() => {
-                const text = document.createElement('div');
-                text.className = 'background-text';
-                text.innerHTML = Array(5).fill('$KITTENS').join(' ');
-                document.body.appendChild(text);
-
-                setTimeout(() => text.remove(), 20000);
-            }, 3000);
+            const text = document.createElement('div');
+            text.className = 'background-text';
+            text.textContent = '$KITTENS';
+            
+            // Random position
+            text.style.left = `${Math.random() * 80}vw`;
+            text.style.top = `${Math.random() * 80}vh`;
+            
+            document.body.appendChild(text);
+            
+            // Remove after animation
+            setTimeout(() => text.remove(), 3000);
         }
-        createBackgroundText();
+
+        // Create initial set
+        for (let i = 0; i < 15; i++) {
+            setTimeout(() => createBackgroundText(), Math.random() * 1000);
+        }
+
+        // Continuously create new texts
+        setInterval(createBackgroundText, 150);
 
         // Handle clicks for meows
-        document.addEventListener('click', function(e) {
+                    document.addEventListener('click', function(e) {
             const meow = document.createElement('div');
             meow.className = 'meow';
             meow.style.left = (e.pageX - 40) + 'px';
             meow.style.top = (e.pageY - 20) + 'px';
+            
+            // Random color for meow text
+            const colors = ['#ff6b6b', '#4169e1', '#32cd32', '#ffd700', '#ff69b4'];
+            meow.style.color = colors[Math.floor(Math.random() * colors.length)];
             
             const meows = ['MEOW! 🚀', 'meow~ 💎', 'Meoooow! ✨', '$KITTENS 🌕', 
                           'mew! 💫', 'purrrr~ 🐱', '$KITTENS! 💎', '$KITTENS 🚀'];
