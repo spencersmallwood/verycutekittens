@@ -248,6 +248,15 @@
 </head>
 <body>
     <div class="moon">🌕</div>
+    <div class="text-container">
+        <div class="background-text">
+            <span>$KITTENS</span>
+            <span>$KITTENS</span>
+            <span>$KITTENS</span>
+            <span>$KITTENS</span>
+            <span>$KITTENS</span>
+        </div>
+    </div>
     <div id="kitten1" class="kitten"></div>
     <div id="kitten2" class="kitten"></div>
     <div id="kitten3" class="kitten"></div>
@@ -256,30 +265,22 @@
     <h1 id="mainTitle">very cute kittens</h1>
 
     <script>
-        // Create background text
+        // Create background text rows
         function createBackgroundText() {
-            for (let i = 0; i < 50; i++) {
-                const text = document.createElement('div');
-                text.className = 'background-text';
-                text.style.left = `${Math.random() * 100}vw`;
-                text.style.animationDelay = `${Math.random() * 15}s`;
-                text.textContent = '$KITTENS';
-                document.body.appendChild(text);
+            const container = document.querySelector('.text-container');
+            for (let i = 0; i < 8; i++) {
+                const row = document.createElement('div');
+                row.className = 'background-text';
+                row.style.animationDelay = `${i * 2}s`;
+                for (let j = 0; j < 5; j++) {
+                    const span = document.createElement('span');
+                    span.textContent = '$KITTENS';
+                    row.appendChild(span);
+                }
+                container.appendChild(row);
             }
         }
         createBackgroundText();
-
-        // Add more background text periodically
-        setInterval(() => {
-            const text = document.createElement('div');
-            text.className = 'background-text';
-            text.style.left = `${Math.random() * 100}vw`;
-            text.textContent = '$KITTENS';
-            document.body.appendChild(text);
-
-            // Remove after animation
-            setTimeout(() => text.remove(), 15000);
-        }, 2000);
 
     
         const titleVariations = [
