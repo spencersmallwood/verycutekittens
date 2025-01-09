@@ -18,6 +18,7 @@
             font-family: 'Inter', sans-serif;
             overflow: hidden;
             cursor: pointer;
+            position: relative;
         }
         
         h1 {
@@ -35,127 +36,149 @@
             position: relative;
             z-index: 1;
             user-select: none;
+            mix-blend-mode: overlay;
         }
 
         .kitten {
-            position: absolute;
+            position: fixed;
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
             z-index: 2;
-            transition: transform 0.3s ease;
+            transition: transform 0.2s ease;
+            cursor: pointer;
         }
 
         .kitten:hover {
-            transform: scale(1.1) !important;
+            filter: brightness(1.1);
+            transform: scale(1.1) rotate(5deg) !important;
         }
 
         #kitten1 {
-            width: 200px;
-            height: 200px;
+            width: 180px;
+            height: 180px;
             background-image: url('kitten.jpg');
-            animation: bounce1 23s linear infinite;
+            animation: bounce1 18s linear infinite;
+            left: 0;
+            top: 0;
         }
 
         #kitten2 {
-            width: 200px;
-            height: 200px;
+            width: 160px;
+            height: 160px;
             background-image: url('kitten2.png');
-            animation: bounce2 27s linear infinite;
+            animation: bounce2 22s linear infinite;
+            left: 50%;
+            top: 0;
         }
 
         #kitten3 {
-            width: 300px;
-            height: 300px;
+            width: 240px;
+            height: 240px;
             background-image: url('kitten3.png');
-            animation: bounce3 31s linear infinite;
+            animation: bounce3 25s linear infinite;
+            left: 20%;
+            top: 20%;
         }
 
         #kitten4 {
-            width: 250px;
-            height: 250px;
+            width: 200px;
+            height: 200px;
             background-image: url('kitten4.png');
-            animation: bounce4 29s linear infinite;
+            animation: bounce4 20s linear infinite;
+            left: 60%;
+            top: 30%;
         }
 
         #kitten5 {
-            width: 250px;
-            height: 250px;
+            width: 220px;
+            height: 220px;
             background-image: url('kitten5.png');
-            animation: bounce5 25s linear infinite;
+            animation: bounce5 23s linear infinite;
+            left: 40%;
+            top: 40%;
         }
 
         .meow {
             position: absolute;
             color: #ff69b4;
-            font-size: 24px;
+            font-size: 28px;
             font-weight: bold;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
             pointer-events: none;
-            animation: floatUp 2s forwards;
+            animation: floatUp 2s forwards ease-out;
             z-index: 1000;
+            opacity: 0;
         }
 
         @keyframes bounce1 {
-            0% { transform: translate(0, 0) rotate(0deg); }
-            20% { transform: translate(calc(85vw - 200px), calc(20vh)) rotate(72deg); }
-            40% { transform: translate(calc(70vw - 200px), calc(70vh - 200px)) rotate(144deg); }
-            60% { transform: translate(calc(30vw), calc(80vh - 200px)) rotate(216deg); }
-            80% { transform: translate(calc(10vw), calc(40vh - 200px)) rotate(288deg); }
-            100% { transform: translate(0, 0) rotate(360deg); }
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(calc(70vw - 180px), 20vh) rotate(90deg); }
+            50% { transform: translate(calc(60vw - 180px), calc(70vh - 180px)) rotate(180deg); }
+            75% { transform: translate(20vw, calc(60vh - 180px)) rotate(270deg); }
         }
 
         @keyframes bounce2 {
-            0% { transform: translate(calc(80vw - 200px), 0) rotate(0deg); }
-            25% { transform: translate(calc(60vw - 200px), calc(70vh - 200px)) rotate(90deg); }
-            50% { transform: translate(calc(20vw), calc(50vh - 200px)) rotate(180deg); }
-            75% { transform: translate(calc(40vw - 200px), calc(20vh)) rotate(270deg); }
-            100% { transform: translate(calc(80vw - 200px), 0) rotate(360deg); }
+            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+            33% { transform: translate(calc(50vw - 160px), calc(50vh - 160px)) rotate(120deg) scale(1.05); }
+            66% { transform: translate(calc(20vw), calc(70vh - 160px)) rotate(240deg) scale(0.95); }
         }
 
         @keyframes bounce3 {
-            0% { transform: translate(calc(40vw - 300px), calc(20vh)) rotate(-5deg); }
-            33% { transform: translate(calc(70vw - 300px), calc(60vh - 300px)) rotate(5deg); }
-            66% { transform: translate(calc(20vw), calc(40vh - 300px)) rotate(-5deg); }
-            100% { transform: translate(calc(40vw - 300px), calc(20vh)) rotate(5deg); }
+            0%, 100% { transform: translate(0, 0) rotate(-5deg); }
+            25% { transform: translate(calc(40vw - 240px), 30vh) rotate(5deg); }
+            50% { transform: translate(calc(60vw - 240px), calc(40vh - 240px)) rotate(-5deg); }
+            75% { transform: translate(30vw, calc(60vh - 240px)) rotate(5deg); }
         }
 
         @keyframes bounce4 {
-            0% { transform: translate(calc(20vw), 0) rotate(0deg) scale(1); }
-            20% { transform: translate(calc(60vw - 250px), calc(30vh)) rotate(72deg) scale(0.9); }
-            40% { transform: translate(calc(80vw - 250px), calc(60vh - 250px)) rotate(144deg) scale(1); }
-            60% { transform: translate(calc(50vw - 250px), calc(70vh - 250px)) rotate(216deg) scale(0.9); }
-            80% { transform: translate(calc(30vw), calc(40vh)) rotate(288deg) scale(1); }
-            100% { transform: translate(calc(20vw), 0) rotate(360deg) scale(1); }
+            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+            20% { transform: translate(30vw, 40vh) rotate(72deg) scale(1.1); }
+            40% { transform: translate(calc(50vw - 200px), calc(60vh - 200px)) rotate(144deg) scale(1); }
+            60% { transform: translate(calc(70vw - 200px), 20vh) rotate(216deg) scale(1.1); }
+            80% { transform: translate(10vw, calc(50vh - 200px)) rotate(288deg) scale(1); }
         }
 
         @keyframes bounce5 {
-            0% { transform: translate(calc(70vw - 250px), calc(40vh)) rotate(0deg) scale(1); }
-            25% { transform: translate(calc(30vw), calc(20vh)) rotate(90deg) scale(0.95); }
-            50% { transform: translate(calc(10vw), calc(60vh - 250px)) rotate(180deg) scale(1); }
-            75% { transform: translate(calc(50vw - 250px), calc(70vh - 250px)) rotate(270deg) scale(0.95); }
-            100% { transform: translate(calc(70vw - 250px), calc(40vh)) rotate(360deg) scale(1); }
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(calc(60vw - 220px), calc(30vh)) rotate(90deg); }
+            50% { transform: translate(calc(40vw - 220px), calc(70vh - 220px)) rotate(180deg); }
+            75% { transform: translate(calc(20vw), calc(40vh - 220px)) rotate(270deg); }
         }
 
         @keyframes floatUp {
             0% {
-                transform: translateY(0);
+                transform: translateY(0) scale(0.5);
+                opacity: 0;
+            }
+            10% {
                 opacity: 1;
             }
             100% {
-                transform: translateY(-100px);
+                transform: translateY(-100px) scale(1.2);
                 opacity: 0;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
         @media (max-width: 768px) {
             .kitten {
-                width: 150px !important;
-                height: 150px !important;
+                width: 120px !important;
+                height: 120px !important;
             }
             #kitten3 {
-                width: 200px !important;
-                height: 200px !important;
+                width: 160px !important;
+                height: 160px !important;
             }
             h1 {
                 font-size: 2.5rem;
@@ -178,7 +201,7 @@
             meow.style.left = (e.pageX - 40) + 'px';
             meow.style.top = (e.pageY - 20) + 'px';
             
-            const meows = ['MEOW!', 'meow~', 'Meoooow!', 'MROW!', 'mew!', 'purrrr~', '♥ meow ♥'];
+            const meows = ['MEOW!', 'meow~', 'Meoooow!', 'MROW!', 'mew!', 'purrrr~', '♥ meow ♥', 'nya~', 'mrrp!'];
             meow.textContent = meows[Math.floor(Math.random() * meows.length)];
             
             document.body.appendChild(meow);
@@ -186,6 +209,27 @@
             setTimeout(() => {
                 meow.remove();
             }, 2000);
+        });
+
+        // Make kittens clickable for individual meows
+        document.querySelectorAll('.kitten').forEach(kitten => {
+            kitten.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent double meows
+                const bounds = kitten.getBoundingClientRect();
+                const meow = document.createElement('div');
+                meow.className = 'meow';
+                meow.style.left = (bounds.left + bounds.width/2) + 'px';
+                meow.style.top = (bounds.top + bounds.height/2) + 'px';
+                
+                const meows = ['MEOW!', 'meow~', 'Meoooow!', 'MROW!', 'mew!', 'purrrr~', '♥ meow ♥', 'nya~', 'mrrp!'];
+                meow.textContent = meows[Math.floor(Math.random() * meows.length)];
+                
+                document.body.appendChild(meow);
+                
+                setTimeout(() => {
+                    meow.remove();
+                }, 2000);
+            });
         });
     </script>
 </body>
