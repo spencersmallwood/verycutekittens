@@ -14,15 +14,37 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: radial-gradient(circle at center, #fff, #f0f0f0);
+            background: white;
             font-family: 'Inter', sans-serif;
             overflow: hidden;
             cursor: pointer;
             position: relative;
         }
         
+        .background-text {
+            position: fixed;
+            font-size: 24px;
+            color: rgba(100, 100, 100, 0.1);
+            pointer-events: none;
+            white-space: nowrap;
+            animation: floatUpBackground 15s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes floatUpBackground {
+            from {
+                transform: translateY(100vh);
+            }
+            to {
+                transform: translateY(-100%);
+            }
+        }
+
         h1 {
             font-size: 4.5rem;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 20px 40px;
             font-weight: 900;
             text-align: center;
             line-height: 1.2;
@@ -233,6 +255,32 @@
     <h1 id="mainTitle">very cute kittens</h1>
 
     <script>
+        // Create background text
+        function createBackgroundText() {
+            for (let i = 0; i < 30; i++) {
+                const text = document.createElement('div');
+                text.className = 'background-text';
+                text.style.left = `${Math.random() * 100}vw`;
+                text.style.animationDelay = `${Math.random() * 15}s`;
+                text.textContent = '$KITTENS';
+                document.body.appendChild(text);
+            }
+        }
+        createBackgroundText();
+
+        // Add more background text periodically
+        setInterval(() => {
+            const text = document.createElement('div');
+            text.className = 'background-text';
+            text.style.left = `${Math.random() * 100}vw`;
+            text.textContent = '$KITTENS';
+            document.body.appendChild(text);
+
+            // Remove after animation
+            setTimeout(() => text.remove(), 15000);
+        }, 2000);
+
+    
         const titleVariations = [
             'very cute $KITTENS 🚀',
             'very cute kittens 😺',
